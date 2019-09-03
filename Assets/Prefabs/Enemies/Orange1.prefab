@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 8973006249158694730}
   - component: {fileID: 8973006249158694731}
   - component: {fileID: 1138267242}
-  - component: {fileID: -2782615395786279707}
   - component: {fileID: 5621708728656638838}
   - component: {fileID: -1351720732757733961}
-  m_Layer: 0
+  - component: {fileID: 1912186059257741456}
+  - component: {fileID: 4539053032179656545}
+  - component: {fileID: 7108028751699191669}
+  m_Layer: 9
   m_Name: Orange1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,19 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710538b4a57586c40b012a7c135770ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2782615395786279707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8973006249158694728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99389c8919eef764ea99617db34f8333, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 100
 --- !u!114 &5621708728656638838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,10 +107,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 8973006249158694728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2623f1af4f712e44588d4ffe60decee6, type: 3}
+  m_Script: {fileID: 11500000, guid: a658bfaa18068b84d8dda92cfcc975a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  points: 53
+  shotCounter: 0
+  minTimeBetweenShots: 0.3
+  maxTimeBetweenShots: 2
+  laser: {fileID: 5919566470365018087, guid: e0da6093eed11d04f80722d93decd200, type: 3}
+  laserOffset: 0.6
+  laserSpeed: 10
+  laserSFX:
+  - {fileID: 8300000, guid: 3b371ed2abd951c4088860d7378fb026, type: 3}
+  - {fileID: 8300000, guid: 8203dc7a751bfbd4a93e4655fdd02b80, type: 3}
+  laserSFXVolume: 0.31
+  explotion: {fileID: 5865725148515576540, guid: 45f19b35db38728428eee701083bfe0b,
+    type: 3}
+  explotionSFX: {fileID: 8300000, guid: 28c08cf06443e6047b3d6b3f750e17c3, type: 3}
+  explotionSFXVolume: 0.19
 --- !u!58 &-1351720732757733961
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,3 +142,134 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!82 &1912186059257741456
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8973006249158694728}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!50 &4539053032179656545
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8973006249158694728}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &7108028751699191669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8973006249158694728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99389c8919eef764ea99617db34f8333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 100
+  hitFX: {fileID: 6979221592679620957, guid: e93346e5c5d47224abb4f348c5598b49, type: 3}
