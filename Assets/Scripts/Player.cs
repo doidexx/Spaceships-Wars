@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] float botPadding;
     [SerializeField] float topPadding;
     [SerializeField] float health = 500f;
+    [SerializeField] int lifes = 3;
 
     //Screen points
     float xMin;
@@ -35,14 +36,21 @@ public class Player : MonoBehaviour
 
     LaserDamageDealer laserDamageDealer;
 
+    GameSession gameSession;
+    [SerializeField] GameObject shield;
+
+    [SerializeField] Vector3 startPos;
+
     bool canShoot;
 
     void Start()
     {
+        gameSession = FindObjectOfType<GameSession>();
         audioS = GetComponent<AudioSource>();
         Physics2D.IgnoreLayerCollision(8 , 8);
         canShoot = true;
         MovementBoundaries();
+        transform.position = startPos;
     }
 
     void Update()
@@ -70,7 +78,9 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
+        gameSession.ReduceLifes();
         GameObject newExplotion = Instantiate(explotion,
             transform.position,
             explotion.transform.rotation);
@@ -78,7 +88,6 @@ public class Player : MonoBehaviour
             Camera.main.transform.position,
             deadSFXVolume);
         Destroy(newExplotion, 1);
-        FindObjectOfType<LevelManager>().LoadGameOver();
     }
 
     private void Shoot()
@@ -119,5 +128,31 @@ public class Player : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+
+    public int GetLifes()
+    {
+        return lifes;
+    }
+
+    public void Respawn()
+    {
+        gameObject.SetActive(true);
+        transform.position = startPos;
+        health = 500;
+        StartCoroutine(InvincibleTimer());
+    }
+
+    IEnumerator InvincibleTimer()
+    {
+        Invincible(true);
+        canShoot = true;
+        yield return new WaitForSeconds(4);
+        Invincible(false);
+    }
+
+    public void Invincible(bool canTakeDamange)
+    {
+        shield.SetActive(canTakeDamange);
     }
 }
